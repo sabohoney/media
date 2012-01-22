@@ -71,6 +71,7 @@ if (!isset($title)) {
 			'type'  => 'file',
 			'error' => array(
 				'error'      => __('An error occured while transferring the file.', true),
+				'name'   => __('The file name is half-width alpha numerics/ characters.', true),
 				'resource'   => __('The file is invalid.', true),
 				'access'     => __('The file cannot be processed.', true),
 				'location'   => __('The file cannot be transferred from or to location.', true),
@@ -82,7 +83,7 @@ if (!isset($title)) {
 		)));
 		echo $this->Form->input($assocAlias . '.0.alternative', array(
 			'label' => __('Textual replacement', true),
-			'value' => '',
+			//'value' => '',
 			'error' => __('A textual replacement must be provided.', true)
 		));
 	?>
