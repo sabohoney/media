@@ -867,6 +867,16 @@ class TransferBehavior extends ModelBehavior {
 		}
 		return $new;
 	}
+
+/**
+ *
+ */
+	function checkFilename(&$Model, $field) {
+		if (isset($field['file']['name']) && preg_match("/[ぁ-んー|ァ-ヶ|ｱ-ｹ|一-龠]+/u", $field['file']['name'])) { // Japanese file name
+			return false;
+		}
+		return true;
+	}
 }
 
 ?>
