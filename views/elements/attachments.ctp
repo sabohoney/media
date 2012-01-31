@@ -46,13 +46,13 @@ if (!isset($assocAlias)) {
 }
 
 if (!isset($model)) {
-	$model = $this->Form->model();
+	$model = 'Upfile';//$this->Form->model();
 }
 
 $modelId = $this->Form->value($this->Form->model().'.id');
 
-if (isset($this->data[$assocAlias][0]['basename'])) {
-	array_unshift($this->data[$assocAlias],array());
+if (isset($this->data['Upfile'][$assocAlias][0]['basename'])) {
+	array_unshift($this->data['Upfile'][$assocAlias],array());
 }
 
 if (!isset($title)) {
@@ -90,18 +90,18 @@ if (!isset($title)) {
 	</div>
 	<!-- Existing Attachments -->
 	<div class="existing">
-	<?php if (isset($this->data[$assocAlias])): ?>
-		<?php for ($i = 1; $i < count($this->data[$assocAlias]); $i++): ?>
+	<?php if (isset($this->data['Upfile'][$assocAlias])): ?>
+		<?php for ($i = 1; $i < count($this->data['Upfile'][$assocAlias]); $i++): ?>
 		<div>
 		<?php
-			$item = $this->data[$assocAlias][$i];
+			$item = $this->data['Upfile'][$assocAlias][$i];
 
-			echo $this->Form->hidden($assocAlias . '.' . $i . '.id', array('value' => $item['id']));
-			echo $this->Form->hidden($assocAlias . '.' . $i . '.model', array('value' => $model));
-			echo $this->Form->hidden($assocAlias . '.' . $i . '.group', array('value' => $item['group']));
-			echo $this->Form->hidden($assocAlias . '.' . $i . '.dirname', array('value' => $item['dirname']));
-			echo $this->Form->hidden($assocAlias . '.' . $i . '.basename', array('value' => $item['basename']));
-			echo $this->Form->hidden($assocAlias . '.' . $i . '.alternative', array('value' => $item['alternative']));
+			echo $this->Form->hidden("Upfile.{$assocAlias}" . '.' . $i . '.id', array('value' => $item['id']));
+			echo $this->Form->hidden("Upfile.{$assocAlias}" . '.' . $i . '.model', array('value' => $model));
+			echo $this->Form->hidden("Upfile.{$assocAlias}" . '.' . $i . '.group', array('value' => $item['group']));
+			echo $this->Form->hidden("Upfile.{$assocAlias}" . '.' . $i . '.dirname', array('value' => $item['dirname']));
+			echo $this->Form->hidden("Upfile.{$assocAlias}" . '.' . $i . '.basename', array('value' => $item['basename']));
+			echo $this->Form->hidden("Upfile.{$assocAlias}" . '.' . $i . '.alternative', array('value' => $item['alternative']));
 
 			if ($file = $this->Media->file("{$item['dirname']}/{$item['basename']}")) {
 				$url = $this->Media->url($file);
@@ -126,7 +126,7 @@ if (!isset($title)) {
 					$item['alternative']
 				);
 			}
-			echo $this->Form->input($assocAlias . '.' . $i . '.delete', array(
+			echo $this->Form->input("Upfile.{$assocAlias}" . '.' . $i . '.delete', array(
 				'label' => __('Release', true),
 				'type' => 'checkbox',
 				'value' => 0

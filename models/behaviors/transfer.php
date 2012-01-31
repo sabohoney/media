@@ -157,23 +157,6 @@ class TransferBehavior extends ModelBehavior {
  * @return boolean
  */
 	function beforeValidate(&$Model) {
-		// add jpeg error
-		if(isset($Model->data[$Model->alias][0])){
-			foreach($Model->data[$Model->alias] as $key => $v){
-				$path = pathinfo($v['file']['name']);
-				if($path['extension'] == 'jpeg'){
-					$Model->data[$Model->alias][$key]['file']['name'] = $path['filename'].'.jpg';
-				}
-			}
-		}
-
-		if(isset($Model->data[$Model->alias]['file'])){
-			$path = pathinfo($Model->data[$Model->alias]['file']['name']);
-			if($path['extension'] == 'jpeg'){
-				$Model->data[$Model->alias]['file']['name'] = $path['filename'].'.jpg';
-			}
-		}
-
 		if (!isset($Model->data[$Model->alias]['file'])) {
 			return true;
 		}
